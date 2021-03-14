@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #box {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background-color: #ccc;
+    }
+    #box2 {
+      position: absolute;
+      width: 90px;
+      height: 90px;
+      background-color: rgb(199, 7, 7);
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <p>Toggle your browser device toolbar and change device to any mobile or tablet from your browser inspect.</p>
+    <div id="box"></div>
+    <div id="box2"></div>
+  </div>
+
+<script>
+  // Query the table
+const box2 = document.getElementById('box2');
+
+const mouseDownHandler = function(e) {
+  // Attach the listeners to `document`
+  document.addEventListener('mousemove', mouseMoveHandler);
+  document.addEventListener('mouseup', mouseUpHandler);
+  console.log(e, 'mouseDownHandler');
+};
+
+let offsetx = null;
+let offsety = null;
+let movendo = false;
+const mouseMoveHandler = function(e) {
+  const box2xnew = e.pageX
+  const box2ynew = e.pageY
+
+  const box2x = box2.offsetLeft
+  const box2y = box2.offsetTop
+  if (!movendo) {
+    offsetx = box2xnew - box2x
+    offsety = box2ynew - box2y
+  }
+  movendo = true;
+  
+  
+  //console.log(e, 'mouseMoveHandler', { box2x, box2y });
+  // console.log({ box2x, box2y }, { box2xnew, box2ynew }, { offsetx, offsety });
+  
+  // assign box new coordinates based on the touch.
+  // box2.style.left = e.pageX + 'px';
+  // box2.style.top = e.pageY + 'px';
+  box2.style.left = (box2xnew - offsetx) + 'px';
+  box2.style.top = (box2ynew - offsety) + 'px';
+};
+
+const mouseUpHandler = function() {
+    // Remove the handlers of `mousemove` and `mouseup`
+    document.removeEventListener('mousemove', mouseMoveHandler);
+    document.removeEventListener('mouseup', mouseUpHandler);
+    console.log('mouseUpHandler');
+    movendo = false
+};
+
+box2.addEventListener('mousedown', mouseDownHandler);
+
+// // Query all rows
+// table.querySelectorAll('tr').forEach(function(row, index) {
+//     // Ignore the header
+//     // We don't want user to change the order of header
+//     if (index === 0) {
+//         return;
+//     }
+
+//     // Get the first cell of row
+//     const firstCell = row.firstElementChild;
+//     firstCell.classList.add('draggable');
+
+//     // Attach event handler
+//     firstCell.addEventListener('mousedown', mouseDownHandler);
+// });
+
+// find the element that you want to drag.
+const box = document.getElementById('box');
+
+/* listen to the touchMove event,
+every time it fires, grab the location
+of touch and assign it to box */
+
+let offsetx0 = null;
+let offsety0 = null;
+let movendo0 = false;
+
+box.addEventListener('touchmove', function(e) {
+  // console.log(e, 'touchmove')
+  // grab the location of touch
+  var touchLocation = e.targetTouches[0];
+
+  const box2xnew = touchLocation.pageX
+  const box2ynew = touchLocation.pageY
+
+  const box2x = box.offsetLeft
+  const box2y = box.offsetTop
+  if (!movendo0) {
+    offsetx0 = box2xnew - box2x
+    offsety0 = box2ynew - box2y
+  }
+  movendo0 = true;
+  
+  // assign box new coordinates based on the touch.
+  box.style.left = (box2xnew - offsetx0) + 'px';
+  box.style.top = (box2ynew - offsety0) + 'px';
+})
+
+/* record the position of the touch
+when released using touchend event.
+This will be the drop position. */
+
+box.addEventListener('touchend', function(e) {
+  console.log(e, 'touchend')
+  // current box position.
+  var x = parseInt(box.style.left);
+  var y = parseInt(box.style.top);
+  movendo0 = false;
+})
+
+</script>
+</body>
+</html>
