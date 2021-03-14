@@ -1,0 +1,23 @@
+*, *::after, *::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
+#container {
+  padding: 1rem;
+}
+
+.box {
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  background-color: black;
+  /* https://stackoverflow.com/questions/59193062/how-to-disable-scrolling-on-body-in-ios-13-safari-when-saved-as-pwa-to-the-home */
+  touch-action: none;
+}
