@@ -1,0 +1,18 @@
+.table-render table,
+.table-render th,
+.table-render td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+.min-w-20 {
+  min-width: 5rem;
+}
+
+.min-h-20 {
+  min-height: 5rem;
+}
+
+.h-min {
+  height: min-content;
+}

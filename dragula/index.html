@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dragula - Exemplo</title>
+  <!-- <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.0.3/dist/tailwind.min.css"> -->
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dragula/3.0.3/dragula.css" /> -->
+  <link rel="stylesheet" href="vendor/tailwind.css">
+  <link rel="stylesheet" href="vendor/dragula.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="h-full">
+  <header>
+    <div>
+      <h1>Tabela Dinâmica</h1>
+    </div>
+  </header>
+  <div class="p-2 border">
+    <div class="flex min-h-20">
+      <div class="flex-initial w-3/12"></div>
+      <div id="items-container" class="flex-1 flex flex-wrap bg-gray-100 border"></div>
+    </div>
+    <div class="flex min-h-20">
+      <div class="flex-initial w-3/12 bg-gray-100 border"></div>
+      <div id="columns-container" class="flex-1 flex bg-gray-100 border"></div>
+    </div>
+    <div class="flex min-h-20">
+      <div id="rows-container" class="flex-initial w-3/12 flex flex-col bg-gray-100 border"></div>
+      <div class="flex-1 pl-2 pt-2 table-render">
+        <table class="w-full">
+          <tbody>
+            <tr><td>a</td><td>b</td></tr>
+            <tr><td>a</td><td>b</td></tr>
+            <tr><td>a</td><td>b</td></tr>
+            <tr><td>a</td><td>b</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="wrapper-dragdrop flex h-full">
+    <div id="rows-container" class="container-dragdrop flex-1 bg-gray-100 p-1 h-full"></div>
+    <div id="columns-container" class="container-dragdrop flex-1 bg-gray-200 p-1 h-full"></div>
+  </div> -->
+
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/dragula/3.0.3/dragula.js"></script> -->
+  <script src="vendor/dragula.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/interactjs@1.10.8/dist/interact.min.js"></script>
+  <style>
+    .draggable, .area {
+      width: 25%;
+      min-height: 6.5em;
+      margin: 1rem 0 0 1rem;
+      background-color: #29e;
+      color: white;
+      border-radius: 0.75em;
+      padding: 4%;
+      touch-action: none;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="draggable" id="unico-1"> Draggable Element </div>
+  <div class="area" id="unico-2"> Draggable Element </div>
+
+  <!--  -->
+  <script>
+  const position = { x: 0, y: 0 }
+
+  interact('.draggable').draggable({
+    modifiers: [
+      interact.modifiers.snap({
+        targets: [
+          { x: 200, y: 200 },
+          { x: 250, y: 350 }
+        ],
+        relativePoints: [
+          { x: 0  , y: 0   },   // snap relative to the element's top-left,
+          { x: 0.5, y: 0.5 },   // to the center
+          { x: 1  , y: 1   }    // and to the bottom-right
+        ]
+      })
+    ],
+    listeners: {
+      start (event) {
+        // console.log(event.type, event.target, event)
+      },
+      move (event) {
+        position.x += event.dx
+        position.y += event.dy
+        event.target.style.transform = `translate(${position.x}px, ${position.y}px)`;
+        // console.log('move', event)
+      },
+    }
+  })
+
+  // interact('.area')
+  // .dropzone({
+  //   ondrop: function (event) {
+  //     console.log(event)
+  //     alert(event.relatedTarget.id
+  //           + ' was dropped into '
+  //           + event.target.id)
+  //   }
+  // })
+  // .on('dropactivate', function (event) {
+  //   event.target.classList.add('drop-activated')
+  // })
+
+
+  </script>
+</body>
+</html>
